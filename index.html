@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SpaceJack</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+		<link rel="stylesheet" href="css/styles.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="js/scripts.js"></script>
+
+</head>
+<body>
+
+
+<!-- 1. Create and element for out table, Turn it green, and give it a border
+2. Create an element for dealer and player hands
+3. Create an element for totals
+4. Create an element for each card in each hand - max of 6.
+5. Assign a generic class to each card, and a unique one.  
+6. Make Deal, Hit, and Stand buttons.
+7. JavaScript!!!
+-->
+
+<div class="container">
+	
+	<div class="row">
+		<div class="the-table col-sm-8 col-sm-offset-2">
+			<!-- Dealer Row -->
+			<div class="row">
+				<div class="col-sm-12 dealer-hand-wrapper">
+					<div class="col-sm-3 dealer-total">
+						Dealer Total <span class="dealer-total-number">0</span>
+					</div> <!-- End Dealer Total -->
+					<div class="col-sm-9 dealer-cards">
+						<div class="col-sm-2 card card-one"></div>
+						<div class="col-sm-2 card card-two"></div>
+						<div class="col-sm-2 card card-three"></div>
+						<div class="col-sm-2 card card-four"></div>
+						<div class="col-sm-2 card card-five"></div>
+						<div class="col-sm-2 card card-six"></div>
+					</div> <!-- End Dealer Cards -->
+				</div> <!-- End Dealer Wrapper -->
+			</div>
+			<!-- Player Row -->
+			<div class="row">
+				<div class="col-sm-12 player-hand-wrapper">
+					<div class="col-sm-3 player-total">
+						Player Total <span class="player-total-number">0</span>
+					</div>
+					<div class="col-sm-9 player-cards">
+						<div class="col-sm-2 card card-one"></div>
+						<div class="col-sm-2 card card-two"></div>
+						<div class="col-sm-2 card card-three"></div>
+						<div class="col-sm-2 card card-four"></div>
+						<div class="col-sm-2 card card-five"></div>
+						<div class="col-sm-2 card card-six"></div>
+					</div>
+				</div>
+				<div class="row player-actions">
+					<div class="col-sm-2 col-sm-offset-2">
+						<button class="deal-button btn btn-primary">Deal</button>
+					</div>
+					<div class="col-sm-2 col-sm-offset-1">
+						<button class="hit-button btn">Hit</button>
+					</div>
+					<div class="col-sm-2 col-sm-offset-1">
+						<button class="stand-button btn">Stand</button>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+</body>
+</html>

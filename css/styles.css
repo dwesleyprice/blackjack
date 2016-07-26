@@ -1,0 +1,31 @@
+.the-table{
+	background-color: green;
+	border: 5px solid #663300;
+	border-radius: 10px;
+	margin-top: 10px;
+	padding: 30px 0px;
+}
+
+.card{
+	height: 120px;
+	background-color: #fff;
+	color: black;
+	margin: 5px;
+	width: 13%;
+	border-radius: 7px;
+}
+
+.dealer-hand-wrapper, .player-hand-wrapper{
+	color: white;
+	font-size: 18px;
+	/* text-align: center; */
+}
+
+.dealer-total-number, .player-total-number{
+	display: block;
+	text-align: center;
+}
+
+.player-actions button{
+	width:100%;
+}
