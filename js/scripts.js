@@ -1,9 +1,17 @@
 // 1. When user clicks deal, deal!
 var theDeck = [];
-var han, guido = 0; 
 var playersHand = [];
 var dealersHand = [];
 var topOfTheDeck = 4;
+var theBank = 500;
+var theBet = 0;
+var tipsy = 0;
+var newGame = true;
+var newHand = true;
+
+// localStorage.setItem(key, value);
+//localStorage.setItem("theBank", "500");
+// localStorage.getItem(key);
 
 $(document).ready(function(){
 
@@ -14,6 +22,8 @@ $(document).ready(function(){
 		playersHand.push(theDeck[0]); //push on the playersHand array a new card.
 
 		placeCard('player', 'one', theDeck[0]);
+
+
 
 		dealersHand.push(theDeck[1]);
 
@@ -36,11 +46,13 @@ $(document).ready(function(){
 							// $('.player-total-number').text(han);
 		calculateTotal(playersHand, 'player');
 		calculateTotal(dealersHand, 'dealer');
+	
 
 	});
 
 	$('.hit-button').click(function(){
-		
+		// var playerTotal = calculateTotal(playersHand, 'player');
+		// if (playerTotal >= 21){
 		var slotForNewCard = '';
 		if (playersHand.length == 2) {
 			slotForNewCard = "three";
@@ -57,12 +69,14 @@ $(document).ready(function(){
 		calculateTotal(playersHand, 'player');
 		topOfTheDeck++;
 		
+		checkBust();
+		// }
 	});
 
 	$('.stand-button').click(function(){
 		var dealerTotal = calculateTotal(dealersHand, 'dealer');
-		while(dealerTotal < 17) {
-			if(dealersHand.length ==2){
+		while(dealerTotal != 21 && dealerTotal < 17) {
+			if(dealersHand.length == 2){
 				slotForNewCard = "three";
 			}else if (dealersHand.length ==3){
 				slotForNewCard = "four";
@@ -81,16 +95,42 @@ $(document).ready(function(){
 
 	});
 
-	
+	$('.doOver-button').click(function(){
+		location.reload();
+	});
+
+$('.redChip').click(function(){
+				youBet(25);
+			// youBet();
+		$('.message-here').text("$25 Wagered");
+		$('.bets').text(theBank);
+	});
+
+	$('.blackChip').click(function(){
+				youBet(50);
+			// youBet();
+		$('.message-here').text("$50 Wagered");
+		$('.bets').text(theBank);
+	});
+
+	$('.whiskey').click(function(){
+		//haveOne();
+		// tipsy += .5
+		$('body').css("-webkit-filter", "blur(1px)");
+		// var howTipsy = '"-webkit-filter", "blur('+tipsy+'px)"';
+		// $('body').css(howTipsy);
+		// console.log(howTipsy);
+		
+	});
 
 });
-
 function placeCard(who, where, cardToPlace){
 	var classSelector = '.'+who+'-cards .card-'+where;
 
 		//UPDATE LOGIC to account for face cards!
+		console.log(cardToPlace);
 
-	$(classSelector).html(cardToPlace);
+	$(classSelector).html("<img src='images/"+cardToPlace+".png'>");
 }
 
 function createDeck(){
@@ -116,12 +156,20 @@ function shuffleDeck(){
 }
 
 function calculateTotal(hand, whosTurn){
+	var hasAce = false;
 	var total = 0;
 	var cardValue = 0;
 	for (var i = 0; i < hand.length; i++) {
 		cardValue = Number(hand[i].slice(0,-1));
 		if(cardValue > 10){
 			cardValue = 10;	
+		} else if (cardValue == 1 && total >= 10){
+			cardValue = 1;
+			hasAce = true;
+		} else if (cardValue == 1) {
+			cardValue = 11;
+		}else if (hasAce == true){
+			total -= (10);
 		}
 		total += cardValue;
 	}
@@ -132,3 +180,58 @@ function calculateTotal(hand, whosTurn){
 
 	return total;
 }
+
+function checkBust(){
+	var playersTotal = calculateTotal(playersHand, 'player');
+	if (playersTotal > 21){
+		$('.message-here').text("You Busted! Dealer Wins!!");
+		// alert("You Busted! Dealer Wins!!!")
+	}
+}
+
+function checkWin(){
+	var playersTotal = calculateTotal(playersHand, 'player');
+	var dealerTotal = calculateTotal(dealersHand, 'dealer');
+	if (dealerTotal == 21 || playersTotal == 21) {
+		$('.message-here').text("BLACKJACK!");
+	}
+
+	if (dealerTotal > 21){
+		$('.message-here').text("Dealer Busted! You WIN!!!");
+		youWin();
+		// alert("Dealer Busted! You WIN!!!");
+	}else if (playersTotal > dealerTotal) {
+		$('.message-here').text("Booyah! Way to Win.");
+		youWin();
+		// alert("Booyah, Booyah, Booyah!!!");
+	} else if (dealerTotal >= playersTotal) {
+		$('.message-here').text("You lose, punk!");
+		// alert("You lose, punk!")
+	}
+
+}
+
+	function youBet(wager){
+		theBet = theBet + wager;
+		theBank -= theBet;
+
+		console.log(theBank);
+		console.log(theBet);
+	}
+
+	function youWin(){
+		theBank += theBet * 2;
+		$('.bets').text(theBank);
+		console.log(theBank);
+		console.log(theBet);
+	}
+
+	function haveOne(){
+		tipsy += .5
+		// $('body').css("-webkit-filter", "blur(.5px)");
+		// var howTipsy = 'style="-webkit-filter:blur('+tipsy+'px)"'
+		// document.getElementsByTagName("body").innerHTML=howTipsy;
+		var howTipsy = '"-webkit-filter", "blur('+tipsy+'px)"';
+		$('body').css(howTipsy);
+		console.log(howTipsy);
+	}

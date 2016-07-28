@@ -1,19 +1,42 @@
+body{
+	background-image: url('slate.jpg');
+
+ 	-webkit-filter: blur(0px);
+    /* -moz-filter: blur(1px); */
+    /* -o-filter: blur(1px); */
+    /* -ms-filter: blur(1px); */
+    /* filter: blur(1px); */
+}
+
+img{
+	max-width: 100%;
+}
+
 .the-table{
-	background-color: green;
-	border: 5px solid #663300;
-	border-radius: 10px;
+	/* background-image: url('slate.jpg'); */
+	background-color: slategray;
+	border: 10px solid #2C3539;
+	border-radius: 0 0 50px 50px;
 	margin-top: 10px;
-	padding: 30px 0px;
+	padding: 60px 0px;
 }
 
 .card{
-	height: 120px;
-	background-color: #fff;
-	color: black;
+	height: 100px;
+	/* background-color: #33F; */
+	/* background-image:
+    linear-gradient(
+      #33F, #335
+    ); */
+	color: white;
 	margin: 5px;
 	width: 13%;
 	border-radius: 7px;
+	padding: 0;
+	transition: all 4s linear;
 }
+
+/* .card:before{content:'\16e4';} */
 
 .dealer-hand-wrapper, .player-hand-wrapper{
 	color: white;
@@ -28,4 +51,42 @@
 
 .player-actions button{
 	width:100%;
+	margin-top: 20px;
+}
+
+.message-board{
+	font-size: 20px;
+	font-family: sans-serif;
+	color: ghostwhite;
+	text-align: center;
+	background-color: #A00;
+	border-radius: 10px;
+/* 	border: 10px solid #663300;
+	padding: 20px; */
+}
+
+.doOver-button{
+	
+}
+
+.chips{
+	padding-top: 10px;
+}
+.chip{
+	background-color: white;
+	color: white;
+	font-size: 16px;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	padding: 0;
+}
+
+.redChip{
+	background-image: url('chip.png');
+}
+
+.blackChip{
+	background-image: url('chip-blk.png');
 }
